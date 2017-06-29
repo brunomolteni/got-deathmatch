@@ -14,7 +14,7 @@
   "devDependencies": {
   },
   "scripts": {
-    "start": "pm2 start index.js -i max-name=\”My-App\”",
+    "start": "pm2 start index.js -i max-name='My-App'",
     "restart": "pm2 restart all",
     "dev": "nwb react run pages/App.js",
     "build": "nwb react build pages/App.js --preact"
