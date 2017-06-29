@@ -1,0 +1,19 @@
+{
+  "name": "got-bet-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "preact": "^8.1.0",
+    "preact-compat": "^3.16.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-localization": "0.0.17",
+    "styled-components": "^2.1.0"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "nwb react run pages/App.js",
+    "build": "nwb react build pages/App.js --preact"
+  }
+}

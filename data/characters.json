@@ -1,0 +1,22 @@
+{"characters": [
+                {"name": "Daenerys",  "family": "Targaryen"},
+                {"name": "Tyrion",    "family": "Lannister"},
+                {"name": "Jaime",     "family": "Lannister"},
+                {"name": "Cersei",    "family": "Lannister"},
+                {"name": "Jon",       "family": "Snow"},
+                {"name": "Sansa",     "family": "Stark"},
+                {"name": "Arya",      "family": "Stark"},
+                {"name": "Bran",      "family": "Stark"},
+                {"name": "Jorah",     "family": "Mormont"},
+                {"name": "Petyr",     "family": "Baelish", "alias": "Littlefinger"},
+                {"name": "Varys"},
+                {"name": "Theon",     "family": "Greyjoy"},
+                {"name": "Melisandre"},
+                {"name": "Davos",     "family": "Seaworth"},
+                {"name": "Bronn"},
+                {"name": "Brienne",   "family": "of Tarth"},
+                {"name": "Samwell",   "family": "Tarly"},
+                {"name": "Sandor",    "family": "Clegane", "alias": "The Hound"},
+                {"name": "Missandei"},
+                {"name": "Tormund",  "family": "Giantsbane"}
+]}
