@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider} from 'styled-components';
+import io from 'socket.io-client';
 
 import List from '../components/List';
 import Character from '../components/Character';
@@ -8,34 +9,44 @@ import Intro from '../components/Intro';
 import Button from '../components/Button';
 import Outro from '../components/Outro';
 
-import Strings from '../utils/i18n';
+import Strings from '../data/i18n';
+
 const LS = window.localStorage;
+const socket = io();
 
 function randomRotation(el){
   el.rotation = Math.random()*60;
   return el;
 }
 
+function locallyStored(item){
+  return LS.getItem(item) !== null && JSON.parse(LS.getItem(item));
+}
+
 const AppMain = styled.section`
-max-height: 100vh;
-${ ({isOpen}) => isOpen && `overflow: hidden;`}
+  max-height: 100vh;
+  ${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) && `overflow: hidden;`}
 `;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: LS.getItem("charList") ? JSON.parse(LS.getItem("charList")) : require('../data/characters.json').characters.map( randomRotation ),
-      intro:  LS.getItem("introClosed") === "false" ? false : true,
-      outro: false,
-      logged: false
+      list: locallyStored('list') || require('../data/characters.json').characters.map( randomRotation) ,
+      logged: locallyStored('logged' ) || false,
+      voted: locallyStored('voted' ) || false,
+      ui: {
+        isIntroOpen: true,
+        isOutroOpen: false
+      }
     };
 
     this.closeIntro = this.closeIntro.bind(this);
     this.openOutro = this.openOutro.bind(this);
     this.saveSelection = this.saveSelection.bind(this);
-    this.loginStatusCallback = this.loginStatusCallback.bind(this);
+    this.fbLoginCallback = this.fbLoginCallback.bind(this);
   }
+
   componentDidMount(){
     (function(d, s, id){
        var js, fjs = d.getElementsByTagName(s)[0];
@@ -45,54 +56,81 @@ class App extends Component {
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
      window.fbAsyncInit = ()=>{
-       FB.getLoginStatus(this.loginStatusCallback);
+       FB.getLoginStatus(this.fbLoginCallback);
      }
   }
-  loginStatusCallback(response){
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      FB.api('/me', function(response) {
-       console.log(response.name, response.id);
-     });
-      this.setState({logged: true});
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      this.setState({logged: false});
-    } else {
-      // The person is not logged into Facebook
-      this.setState({logged: false});
-    }
-  }
+
   closeIntro(){
-    this.setState({intro: false});
-    LS.setItem('introClosed',false);
+    this.setState({'ui': {...this.state.ui, isIntroOpen: false}});
   }
+
   openOutro(){
-    this.setState({outro: true});
+    this.setState({'ui': {...this.state.ui, isOutroOpen: true}});
   }
-  saveSelection(){
-    FB.getLoginStatus(this.loginStatusCallback);
-  }
+
   toggleCharacter(index){
-    if(this.state.logged) return;
+    if(this.state.voted) return;
     let newList = [].concat(this.state.list);
     newList[index].checked = !newList[index].checked;
-    LS.setItem('charList',JSON.stringify(newList));
+    LS.setItem('list',JSON.stringify(newList));
     this.setState({list: newList });
   }
+
+  saveSelection(){
+    const saveToServer = fetch('//localhost:5000/api/vote?access_token='+this.state.token, {
+    	method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    	body: JSON.stringify({
+    		name: this.state.logged.name,
+        id: this.state.logged.id,
+        votes: this.state.list
+    	})
+    })
+    .then(response => response.ok)
+    .then(ok => {
+      if(ok){
+        this.setState({voted: true});
+        LS.setItem('voted',true);
+      }
+    });
+  }
+
+  fbLoginCallback(response){
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      console.log(response);
+      this.setState({token: response.authResponse.accessToken});
+      FB.api('/me',response=>{
+        console.log(response);
+        this.setState({logged: response});
+        LS.setItem('logged',JSON.stringify(response));
+      });
+
+    } else {
+      // The person is not logged into Facebook or not into your app
+      this.setState({logged: false});
+      LS.setItem('logged',false);
+    }
+  }
+
   render() {
     return (
-      <AppMain isOpen={this.state.intro || this.state.outro}>
-        <Header isOpen={this.state.intro || this.state.outro}></Header>
-        <Intro isIntroOpen={this.state.intro} closeIntro={this.closeIntro}></Intro>
-        <List isOpen={this.state.intro || this.state.outro} isLogged={this.state.logged} className="character-list">
-          {this.state.list.length && this.state.list.map( (el, i)=>
-            <Character char={el} check={this.toggleCharacter.bind(this,i)} key={i}/>
-          )}
-          {this.state.logged || <Button onClick={this.openOutro} className="unselectable">{Strings.save}</Button>}
-        </List>
-        <Outro isOutroOpen={this.state.outro} isLogged={this.state.logged} save={this.saveSelection}></Outro>
-      </AppMain>
+      <ThemeProvider theme={this.state.ui}>
+        <AppMain>
+          <Header></Header>
+          <Intro isOpen={this.state.ui.isIntroOpen} closeIntro={this.closeIntro} alreadyVoted={this.state.voted} username={this.state.logged && this.state.logged.name}></Intro>
+          <List className="character-list">
+            {this.state.list.length && this.state.list.map( (el, i)=>
+              <Character char={el} check={this.toggleCharacter.bind(this,i)} key={i}/>
+            )}
+            {this.state.voted || <Button onClick={this.openOutro} className="unselectable">{Strings.save}</Button>}
+          </List>
+          <Outro isOpen={this.state.ui.isOutroOpen} alreadyVoted={this.state.voted} save={this.saveSelection}></Outro>
+        </AppMain>
+      </ThemeProvider>
     );
   }
 }

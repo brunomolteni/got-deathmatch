@@ -29,7 +29,7 @@ contain: layout;
   will-change: transform;
   transition: transform 0.4s ease-out;
   transform-origin: top;
-  transform: translateY(${ ({open}) => open ? '40px' : '10px'}) scale(${ ({open}) => open ? '1' : '0.5'});
+  transform: translateY(${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) ? '40px' : '10px'}) scale(${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) ? '1' : '0.5'});
 }
 > h1 strong{
   text-indent: -1000%;
@@ -52,18 +52,18 @@ contain: layout;
   top: 0;
   left: 50%;
   z-index: -1;
-  transform: translateX(-50%) translateY(-40%) rotate(-70deg) translateY(${ ({open}) => !open ? '-200%' : '0'});
+  transform: translateX(-50%) translateY(-40%) rotate(-70deg) translateY(${ ({theme}) => !(theme.isIntroOpen || theme.isOutroOpen) ? '-200%' : '0'});
   will-change: transform;
   transition: transform 0.4s ease-in;
 }
 > h1:after{
   background-image: url(${sword2});
-  transform: translateX(-50%) translateY(-40%) rotate(70deg) translateY(${ ({open}) => !open ? '-200%' : '0'});
+  transform: translateX(-50%) translateY(-40%) rotate(70deg) translateY(${ ({theme}) => !(theme.isIntroOpen || theme.isOutroOpen) ? '-200%' : '0'});
 }
 `;
 
-export default ({isOpen}) => (
-      <HeaderStyled open={isOpen} >
+export default () => (
+      <HeaderStyled>
         <h1 className="unselectable"><strong>Game of Thrones</strong> <span>Deathmatch</span></h1>
       </HeaderStyled>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
-import Strings from '../utils/i18n';
 import Article from './Article';
 import Button from './Button';
+import Strings from '../data/i18n';
 
 const OutroArticle = Article.extend`
   transform: translateY(${ ({open}) => open ? '-50%' : '100vh'}) translateX(-50%);
@@ -16,8 +16,6 @@ const OutroArticle = Article.extend`
   }
 `;
 
-
-
 function share(){
   FB.ui(
    {
@@ -26,14 +24,13 @@ function share(){
   }, function(response){});
 }
 
-export default ({isOutroOpen, isLogged, save}) => (
-  window.checkLoginState = (e) => {
+export default ({isOpen, alreadyVoted, save}) => (
+  window.checkLoginState = (e) => { // mapping save to global function to allow fb login callback
     save();
   },
-    <OutroArticle open={isOutroOpen}>
-      { isLogged || <h2>{Strings.outroH2}</h2>}
-      { isLogged && <p>{Strings.outroP}</p>}
-      {!isLogged ?
+    <OutroArticle open={isOpen}>
+      { !alreadyVoted ? <h2>{Strings.outroH2}</h2> : <p>{Strings.outroP}</p>}
+      {!alreadyVoted ?
         <div id="fb-login" className="fb-login-button" data-onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
       : <Button onClick={share}>{Strings.outroButton}</Button>}
     </OutroArticle>

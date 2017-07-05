@@ -3,9 +3,10 @@ import LocalizedStrings from 'react-localization';
 const Strings = new LocalizedStrings({
   en: {
     "introH2":    "Who will die this season?",
-    "introP1":    "Guess which characters are gonna fall",
+    "introP1":    "Vote who you think will die this year",
     "introP2":    "Share and challenge your friends!",
     "outroH2":    "Connect with facebook to save your vote",
+    "outroP":     "¡Challenge your friends to vote!",
     "outroButton":"Share on Facebook",
     "countdown":  "Season 7 starts in ",
     "days":       " days",
@@ -19,10 +20,10 @@ const Strings = new LocalizedStrings({
   },
   es:{
    "introH2":     "¿Quién morirá esta temporada?",
-   "introP1":     "Adivina que personajes van a caer",
+   "introP1":     "Vota quien te parece que morirá este año",
    "introP2":     "Compartí y desafiá a tus amigos!",
    "outroH2":     "Conectate con facebook para guardar tu voto",
-   "outroP":      "¡Desafiá a tus amigos y descubrí quien tiene mas aciertos al final de la temporada!",
+   "outroP":      "¡Desafiá a tus amigos a que voten!",
    "outroButton": "Compartir en Facebook",
    "countdown":   "La temporada 7 empieza en ",
    "days":        " dias",

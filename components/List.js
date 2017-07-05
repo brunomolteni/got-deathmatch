@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const List = styled.ul`
 list-style: none;
-padding: 50px 0 ${({isLogged})=>isLogged ? '100px' : '40px'};
+padding: 50px 0 100px;
 margin: 0;
 display: flex;
 flex-wrap: wrap;
@@ -14,7 +14,7 @@ background-image: radial-gradient(ellipse at 50% -20%, rgba(0,0,0,0), rgba(0,0,0
 min-height: 100vh;
 box-sizing: border-box;
 
-${ ({isOpen}) => isOpen && `
+${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) && css`
 opacity:0.1;
 pointer-events: none;
 overflow: hidden;
