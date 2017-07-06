@@ -1,7 +1,7 @@
 module.exports = {
   webpack: {
     html: {
-      template: 'pages/layout.html'
+      template: 'layout.html'
     },
     rules: {
       svg: {

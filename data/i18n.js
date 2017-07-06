@@ -8,15 +8,20 @@ const Strings = new LocalizedStrings({
     "outroH2":    "Connect with facebook to save your vote",
     "outroP":     "¡Challenge your friends to vote!",
     "outroButton":"Share on Facebook",
+    "errorH2":    "There has been an error",
+    "errorP":     "Refresh the site and try again",
     "countdown":  "Season 7 starts in ",
     "days":       " days",
-    "weeks":      " weeks",
+    "weeks":      " week",
     "and":        " and ",
     "hi":         "Hi ",
-    "already":    ", you've already voted",
+    "already":    "You've already voted",
     "untilThen":  "You've got until then to change your vote",
+    "thanks":     "Thanks for Sharing!",
+    "visibility":  "Once the new season starts you'll be able to see more info.",
     "change":     "Change",
-    "save":       "Save"
+    "save":       "Save",
+    "close":      "Close"
   },
   es:{
    "introH2":     "¿Quién morirá esta temporada?",
@@ -25,15 +30,20 @@ const Strings = new LocalizedStrings({
    "outroH2":     "Conectate con facebook para guardar tu voto",
    "outroP":      "¡Desafiá a tus amigos a que voten!",
    "outroButton": "Compartir en Facebook",
+   "errorH2":     "There has been an error",
+   "errorP":      "Refresh the site and try again",
    "countdown":   "La temporada 7 empieza en ",
    "days":        " dias",
-   "weeks":       " semanas",
+   "weeks":       " semana",
    "and":         " y ",
    "hi":          "Hola ",
-   "already":     ", ya votaste",
+   "already":     "Ya votaste",
    "untilThen":   "Tenes hasta entonces para cambiar tu voto",
+   "thanks":      "¡Gracias por compartir!",
+   "visibility":  "Cuando empiece la nueva temporada vas a poder ver mas información.",
    "change":      "Cambiar",
-   "save":        "Guardar"
+   "save":        "Guardar",
+   "close":       "Cerrar"
   }
 });
 

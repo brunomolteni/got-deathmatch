@@ -18,7 +18,7 @@ transition: transform 0.4s ease-in;
 will-change: transform;
 contain: content;
 
-@media (min-width: 600px){
+@media (min-width: 800px){
   max-width: 60%;
 }
 

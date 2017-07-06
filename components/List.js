@@ -19,7 +19,12 @@ opacity:0.1;
 pointer-events: none;
 overflow: hidden;
 `}
-
+> p{
+  color: #666;
+  text-align: center;
+  width: 100%;
+  flex: 1 1 100%;
+}
 > button{
   flex: 0;
   margin: 20px 50%;
