@@ -9,7 +9,7 @@ width: 100%;
 padding: 20px 20px 40px;
 text-align: center;
 font-size: 1.4rem;
-font-size: calc(1vw + 1vh + 0.4rem);
+font-size: calc(1vw + 1vh + 0.2rem);
 color: rgba(0,0,0,0.7);
 background-color: #e5d3b3;
 background-image: radial-gradient(ellipse,rgba(255,255,255,0.4),transparent, rgba(90,60,5,0.8));
