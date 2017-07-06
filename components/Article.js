@@ -6,7 +6,7 @@ z-index: 5;
 left: 50%;
 top: 320px;
 width: 100%;
-padding: 20px 20px 40px;
+padding: 20px;
 text-align: center;
 font-size: 1.4rem;
 font-size: calc(1vw + 1vh + 0.2rem);
