@@ -34,7 +34,6 @@ module.exports = (app, passport) => {
           console.log('error inserting:',err);
           if(err.errorType === 'uniqueViolated'){
             res.sendStatus(409);
-            error = true;
           }else res.sendStatus(req.user? 200 : 401);
         }
       });

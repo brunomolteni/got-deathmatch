@@ -29,7 +29,7 @@ class App extends Component {
     this.state = {
       list: locallyStored('list') || require('../data/characters.json').characters.map( randomRotation) ,
       logged: locallyStored('logged') || false,
-      error: locallyStored('error' ) || false,
+      error: false,
       shared: locallyStored('shared') || false,
       ui: {
         isIntroOpen: true,
@@ -38,7 +38,7 @@ class App extends Component {
     };
 
     this.store = storeLocally.bind(this);
-    this.api = hitApi.bind(this);
+    this.api = hitApi.bind(this)
     this.getVotes = getUserVotes;
     this.closeIntro = this.closeIntro.bind(this);
     this.closeOutro = this.closeOutro.bind(this);
@@ -82,10 +82,10 @@ class App extends Component {
         this.api('post')
         .then(response => response.status)
         .then(status => {
-          (status!==200 && status!==409) && this.store('error',true);
+          (status!==200 && status!==409) && this.setState({error: true});
         });
       }
-      else this.store('error',true);
+      else this.setState({error: true});
     }
     FB.getLoginStatus(this.fbLoginCallback);
   }
@@ -96,11 +96,11 @@ class App extends Component {
         this.api('put')
         .then(response => response.status)
         .then(status => {
-          (status!==200 && status!==409) && this.store('error',true);
+          (status!==200 && status!==409) && this.setState({error: true});
           this.openOutro();
         });
       }
-      else this.store('error',true);
+      else this.setState({error: true});
     }
     FB.getLoginStatus(this.fbLoginCallback);
 
@@ -112,11 +112,11 @@ class App extends Component {
       this.setState({token: response.authResponse.accessToken});
 
       if(!this.state.logged){
-        FB.api('/me',(response)=>{
-          this.store('logged', response);
-          this.getVotes(response.id)
-          .then(response=>response.json())
-          .then(voteList=>this.store('list',voteList));
+        FB.api('/me',(fbResponse)=>{
+          this.store('logged', fbResponse);
+          this.getVotes(fbResponse.id)
+          .then(apiResponse=>apiResponse.json())
+          .then(voteList=>{console.log(voteList);this.store('list',voteList)});
           !!this.afterLogin && this.afterLogin();
         });
       }
