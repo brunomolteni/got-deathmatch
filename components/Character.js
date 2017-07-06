@@ -16,6 +16,7 @@ position: relative;
 }
 
 > .img{
+  overflow: hidden;
   position: relative;
   z-index: -1;
   display: block;
