@@ -8,7 +8,7 @@ import { share } from '../utils/facebook';
 import { getTimeRemaining } from '../utils/functions';
 
 
-const DefaultContent = ()=>(
+const DefaultContent = ({close})=>(
   <div>
     <p>{Strings.outroH2}</p>
     <div id="fb-login" className="fb-login-button" data-onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="fañse" data-scope="public_profile,user_friends,email"></div>
@@ -60,7 +60,7 @@ export default ({isOpen, hasShared, shareSuccess, username, error, save, close})
         error ? <ErrorContent />
         : hasShared ? <AlreadySharedContent close={close}/>
         : !!username ? <AlreadyVotedContent close={close} shareSuccess={shareSuccess}/>
-        : <DefaultContent />
+        : <DefaultContent close={close}/>
       }
     </OutroArticle>
 )
