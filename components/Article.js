@@ -30,8 +30,8 @@ contain: content;
   height: 300px;
   position: absolute;
   bottom: -100px;
-  right: -100px;
-  transform: rotate(-30deg);
+  right: -120px;
+  transform: rotate(-15deg);
   transform-origin: 50% 50%;
   opacity: 0.5;
 }

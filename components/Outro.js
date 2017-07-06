@@ -42,6 +42,7 @@ const OutroArticle = Article.extend`
 
   &:before{
     left: -50px;
+    right: auto;
     bottom: -120px;
     transform: rotate(10deg);
   }
