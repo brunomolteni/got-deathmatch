@@ -12,7 +12,7 @@ module.exports = (app, passport) => {
       db.findOne({ _id: req.params.id }, function (err, doc) {
         !!err && console.log('error getting votes:',err);
         console.log('Got the Votes!',doc);
-        res.json(getVoteListFromArray(doc.voted));
+        res.json(doc ? getVoteListFromArray(doc.voted) : {});
       });
     }
   );
