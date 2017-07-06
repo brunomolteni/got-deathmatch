@@ -64,8 +64,9 @@ class App extends Component {
 
   closeOutro(){
     this.setState({'ui': {...this.state.ui, isOutroOpen: false}});
-    if(!this.state.logged)ga('send','event','login','close');
+    if(this.state.shared)ga('send','event','thanks','close');
     if(!!this.state.logged)ga('send','event','share','close');
+    if(!this.state.logged)ga('send','event','login','close');
   }
 
   shareSuccess(){
