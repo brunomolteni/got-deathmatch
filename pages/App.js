@@ -28,8 +28,9 @@ class App extends Component {
     super(props);
     this.state = {
       list: locallyStored('list') || require('../data/characters.json').characters.map( randomRotation) ,
-      logged: locallyStored('logged' ) || false,
+      logged: locallyStored('logged') || false,
       error: locallyStored('error' ) || false,
+      shared: locallyStored('shared') || false,
       ui: {
         isIntroOpen: true,
         isOutroOpen: false

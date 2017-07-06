@@ -24,7 +24,7 @@ const AlreadyVotedContent = ({close,shareSuccess})=>(
   <div>
     <h2>{Strings.already}</h2>
     <p>{Strings.outroP}</p>
-    <Button onClick={share} className="unselectable">{Strings.outroButton}</Button>
+    <Button onClick={share.bind(null,shareSuccess)} className="unselectable">{Strings.outroButton}</Button>
     <Button onClick={close} className="unselectable">{Strings.close}</Button>
   </div>
 )
