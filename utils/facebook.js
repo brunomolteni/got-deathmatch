@@ -17,6 +17,7 @@ export function share(successCb){
     method: 'share',
     href: 'http://gotdeathmatch.com'
   }, function(response){
+    console.log(response);
     if(response && !Array.isArray(response) && !response.error_message){
       successCb();
     }
