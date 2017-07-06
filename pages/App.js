@@ -55,6 +55,7 @@ class App extends Component {
 
   closeIntro(){
     this.setState({'ui': {...this.state.ui, isIntroOpen: false}});
+    ga('send','event','intro','close');
   }
 
   openOutro(){
@@ -63,10 +64,13 @@ class App extends Component {
 
   closeOutro(){
     this.setState({'ui': {...this.state.ui, isOutroOpen: false}});
+    if(!this.state.logged)ga('send','event','login','close');
+    if(!!this.state.logged)ga('send','event','share','close');
   }
 
   shareSuccess(){
      this.store('shared',true);
+     ga('send','event','share','success');
   }
 
   toggleCharacter(index){
@@ -83,6 +87,8 @@ class App extends Component {
         .then(response => response.status)
         .then(status => {
           (status!==200 && status!==409) && this.setState({error: true});
+          if(!this.state.error) ga('send','event','vote','save');
+          else ga('send','event','vote','error','save');
         });
       }
       else this.setState({error: true});
@@ -98,6 +104,8 @@ class App extends Component {
         .then(status => {
           (status!==200 && status!==409) && this.setState({error: true});
           this.openOutro();
+          if(!this.state.error) ga('send','event','vote','change');
+          else ga('send','event','vote','error','change');
         });
       }
       else this.setState({error: true});
@@ -112,6 +120,7 @@ class App extends Component {
       this.setState({token: response.authResponse.accessToken});
 
       if(!this.state.logged){
+        ga('send','event','login','success');
         FB.api('/me',(fbResponse)=>{
           this.store('logged', fbResponse);
           this.getVotes(fbResponse.id)
