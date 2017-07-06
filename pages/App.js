@@ -78,7 +78,7 @@ class App extends Component {
 
   saveVote(){
     this.afterLogin = ()=>{
-      if(this.state.token && this.state.logged){
+      if(this.state.token && !!this.state.logged){
         this.api('post')
         .then(response => response.status)
         .then(status => {
@@ -92,7 +92,7 @@ class App extends Component {
 
   changeVote(){
     this.afterLogin = ()=>{
-      if(this.state.token && this.state.logged){
+      if(this.state.token && !!this.state.logged){
         this.api('put')
         .then(response => response.status)
         .then(status => {
