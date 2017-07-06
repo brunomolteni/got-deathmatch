@@ -35,6 +35,11 @@ contain: content;
   transform-origin: 50% 50%;
   opacity: 0.5;
 }
+
+#fb-login + button{
+  display: block;
+  margin: 10px auto 0;
+}
 `;
 
 export default Article;
