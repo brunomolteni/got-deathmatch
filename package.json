@@ -23,7 +23,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "pm2 start server.js -i",
+    "start": "pm2 start server.js -i max-name='My-App'",
     "restart": "pm2 restart all",
     "kill": "pm2 kill",
     "dev": "nwb react run pages/App.js",
