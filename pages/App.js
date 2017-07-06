@@ -77,7 +77,7 @@ class App extends Component {
 
   saveVote(){
     this.afterLogin = ()=>{
-      if(this.state.token){
+      if(this.state.token && this.state.logged){
         this.api('post')
         .then(response => response.status)
         .then(status => {
@@ -115,9 +115,10 @@ class App extends Component {
           this.getVotes(response.id)
           .then(response=>response.json())
           .then(voteList=>this.store('list',voteList));
-          !!this.afterLogin && this.afterLogin();
         });
       }
+
+      !!this.afterLogin && this.afterLogin();
 
     } else {
       // The person is not logged into Facebook or not into your app

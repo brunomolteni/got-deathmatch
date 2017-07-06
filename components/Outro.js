@@ -11,7 +11,7 @@ import { getTimeRemaining } from '../utils/functions';
 const DefaultContent = ()=>(
   <div>
     <p>{Strings.outroH2}</p>
-    <div id="fb-login" className="fb-login-button" data-onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+    <div id="fb-login" className="fb-login-button" data-onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="fañse" data-scope="basic_info,user_friends"></div>
   </div>
 )
 const ErrorContent = ()=>(
