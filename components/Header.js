@@ -19,12 +19,12 @@ contain: layout;
 > h1 {
   color: #e3bc80;
   font-size: 2rem;
+  font-size: calc(1vh + 1vw + 1rem);
   font-weight: normal;
   line-height: 1.1;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 0 auto;
-  display: inline-block;
   position: relative;
   will-change: transform;
   transition: transform 0.4s ease-out;
@@ -39,14 +39,14 @@ contain: layout;
   background-image: url(${logo}), radial-gradient(ellipse,black,transparent 70%);
 }
 > h1 span{
-    text-shadow: 0 1px 1px rgba(0,0,0,0.5), 0 0 15px black;
-    padding: 0 40px
+    text-shadow: 0 1px 1px rgba(0,0,0,0.8), 0 0 15px black;
 }
 > h1:before, > h1:after{
   content: '';
   display: block;
   background: url(${sword1}) no-repeat center;
   height: 300px;
+  max-height: 80vw;
   width: 50px;
   position: absolute;
   top: 0;
@@ -59,6 +59,11 @@ contain: layout;
 > h1:after{
   background-image: url(${sword2});
   transform: translateX(-50%) translateY(-40%) rotate(70deg) translateY(${ ({theme}) => !(theme.isIntroOpen || theme.isOutroOpen) ? '-200%' : '0'});
+}
+@media (max-width: 420px){
+  > h1{
+    transform: translateY(${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) ? '40px' : '10px'}) scale(${ ({theme}) => (theme.isIntroOpen || theme.isOutroOpen) ? '0.8' : '0.5'});
+  }
 }
 `;
 

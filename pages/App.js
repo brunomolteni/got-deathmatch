@@ -135,7 +135,7 @@ class App extends Component {
       <ThemeProvider theme={this.state.ui}>
         <AppMain>
           <Header></Header>
-          <Intro isOpen={this.state.ui.isIntroOpen} close={this.closeIntro} username={this.state.logged && this.state.logged.name}></Intro>
+          <Intro isOpen={this.state.ui.isIntroOpen} close={this.closeIntro} username={this.state.logged && this.state.logged.name.split(' ')[0]}></Intro>
           <List className="character-list">
             <p>{Strings.helper}</p>
             {this.state.list.length && this.state.list.map( (el, i)=>

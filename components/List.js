@@ -20,7 +20,8 @@ pointer-events: none;
 overflow: hidden;
 `}
 > p{
-  color: #666;
+  color: #777;
+  font-size: calc(1vh + 1vw + 0.2rem);
   text-align: center;
   width: 100%;
   flex: 1 1 100%;

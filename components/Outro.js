@@ -41,7 +41,7 @@ const OutroArticle = Article.extend`
   transform: translateY(${ ({open}) => open ? '-50%' : '100vh'}) translateX(-50%);
 
   &:before{
-    left: -40px;
+    left: -50px;
     bottom: -120px;
     transform: rotate(10deg);
   }
