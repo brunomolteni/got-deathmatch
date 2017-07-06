@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider} from 'styled-components';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
 import List from '../components/List';
 import Character from '../components/Character';

@@ -42,7 +42,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static('dist'))
-app.use('/static', express.static('static'))
+app.use('/static', express.static('static'),{
+  maxage: '7d',
+})
 
 require('./routes.js')(app, passport);
 
