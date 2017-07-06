@@ -15,10 +15,8 @@ export function share(successCb){
   FB.ui(
    {
     method: 'share',
-    href: 'http://gotdeathmatch.com',
-    mobile_iframe: true
+    href: 'http://gotdeathmatch.com'
   }, function(response){
-    console.log(response);
     if(response && !Array.isArray(response) && !response.error_message){
       successCb();
     }
