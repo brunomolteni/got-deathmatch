@@ -18,7 +18,7 @@ const Strings = new LocalizedStrings({
     "already":    "You've already voted",
     "untilThen":  "You've got until then to change your vote",
     "thanks":     "Thanks for Sharing!",
-    "visibility":  "Once the new season starts you'll be able to see more info.",
+    "helper":     "Mark the characters you think will die this season",
     "change":     "Change",
     "save":       "Save",
     "close":      "Close"
@@ -40,7 +40,7 @@ const Strings = new LocalizedStrings({
    "already":     "Ya votaste",
    "untilThen":   "Tenes hasta entonces para cambiar tu voto",
    "thanks":      "¡Gracias por compartir!",
-   "visibility":  "Cuando empiece la nueva temporada vas a poder ver mas información.",
+   "helper":      "Marca los personajes que van a morir esta temporada",
    "change":      "Cambiar",
    "save":        "Guardar",
    "close":       "Cerrar"

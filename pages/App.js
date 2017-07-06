@@ -133,7 +133,7 @@ class App extends Component {
           <Header></Header>
           <Intro isOpen={this.state.ui.isIntroOpen} close={this.closeIntro} username={this.state.logged && this.state.logged.name}></Intro>
           <List className="character-list">
-            <p>Marca los personajes que van a morir esta temporada</p>
+            <p>{Strings.helper}</p>
             {this.state.list.length && this.state.list.map( (el, i)=>
               <Character char={el} check={this.toggleCharacter.bind(this,i)} key={i}/>
             )}
