@@ -8,7 +8,7 @@ The frontend is done entirely with ES6 using React as the view engine, Styled Co
 
 Local development
 `
-npm run start
+npm run dev
 `
 
 Production build
