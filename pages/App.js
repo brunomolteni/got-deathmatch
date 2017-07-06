@@ -126,7 +126,7 @@ class App extends Component {
           this.store('logged', fbResponse);
           this.getVotes(fbResponse.id)
           .then(apiResponse=>apiResponse.json())
-          .then(voteList=>{console.log(voteList);this.store('list',voteList)});
+          .then(voteList=>{ this.store('list',voteList) });
           !!this.afterLogin && this.afterLogin();
         });
       }
