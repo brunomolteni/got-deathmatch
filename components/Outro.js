@@ -57,7 +57,7 @@ export default ({isOpen, hasShared, shareSuccess, username, error, save, close})
       {
         error ? <ErrorContent />
         : hasShared ? <AlreadySharedContent close={close}/>
-        : !!username ? <AlreadyVotedContent close={close}/>
+        : !!username ? <AlreadyVotedContent close={close} shareSuccess={shareSuccess}/>
         : <DefaultContent />
       }
     </OutroArticle>
