@@ -96,6 +96,7 @@ class App extends Component {
         .then(response => response.status)
         .then(status => {
           (status!==200 && status!==409) && this.store('error',true);
+          this.openOutro();
         });
       }
       else this.store('error',true);
@@ -115,10 +116,11 @@ class App extends Component {
           this.getVotes(response.id)
           .then(response=>response.json())
           .then(voteList=>this.store('list',voteList));
+          !!this.afterLogin && this.afterLogin();
         });
       }
+      else !!this.afterLogin && this.afterLogin();
 
-      !!this.afterLogin && this.afterLogin();
 
     } else {
       // The person is not logged into Facebook or not into your app
