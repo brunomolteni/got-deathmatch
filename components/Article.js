@@ -4,7 +4,7 @@ const Article = styled.article`
 position: fixed;
 z-index: 5;
 left: 50%;
-top: 320px;
+top: 220px;
 width: 100%;
 padding: 20px;
 text-align: center;
