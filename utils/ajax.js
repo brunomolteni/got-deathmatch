@@ -1,5 +1,5 @@
 export function hitApi(method){
-  return fetch('//localhost:5000/api/vote?access_token='+this.state.token, {
+  return fetch('/api/vote?access_token='+this.state.token, {
     method: method,
     headers: {
       'Accept': 'application/json',
@@ -14,5 +14,5 @@ export function hitApi(method){
 }
 
 export function getUserVotes(id){
-  return fetch('//localhost:5000/api/votes/'+id+'?access_token='+this.state.token)
+  return fetch('/api/votes/'+id+'?access_token='+this.state.token)
 }
