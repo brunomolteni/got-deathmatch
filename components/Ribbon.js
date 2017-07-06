@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const H4 = styled.h4`
-font-size: 16px;
+font-size: 0.9rem;
 width: 130px;
 position: absolute;
 background: ${ ({checked}) => checked ? '#6c6c6b' : '#fcf8ea'};
@@ -59,7 +59,7 @@ left: -10px;
   height: 14px;
   width: 60%;
   text-align: center;
-  font-size: 10px;
+  font-size: 0.7rem;
   color: #888;
 }
 `;
